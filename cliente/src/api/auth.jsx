@@ -31,7 +31,7 @@ export class Auth{
 
 
 
-    async login(){
+    async login(data){
         try{
         
             const url = `${this.baseApi}/${ENV.API_ROUTES.LOGIN}`
@@ -50,4 +50,51 @@ export class Auth{
             throw error
         }
     }
+
+    async refreshAccessToken (refreshAccessToken){
+        try {
+            const url = `${this.baseApi}/${ENV.API_ROUTES.REFRESH_ACCESS_TOKEN}`
+            const params={
+                method:"POST",
+                headers: {
+                    "Content-Type":"application/json",
+                },
+                body: JSON.stringify({
+                    token: refreshToken,
+                }),
+            }
+
+            const response = await fetch(url, params)
+            const result = await response.json()
+
+            if(response.status !== 200) throw result
+            return result
+
+        } catch (error) {
+            throw error
+        }
+    }
+
+
+    setAccessToken(token){
+        localStorage.setItem(ENV.JWT.ACCESS, token)
+    }
+
+    getAccessToken(){
+       return localStorage.getItem(ENV.JWT.ACCESS)
+    }
+
+    setRefreshAccessToken(token){
+        localStorage.setItem(ENV.JWT.REFRESH, token)
+    }
+
+    getRefreshAccessToken(){
+       return localStorage.getItem(ENV.JWT.REFRESH)
+    }
+
+    removeTokens(){
+        localStorage.removeItem(ENV.JWT.ACCESS)
+        localStorage.removeItem(ENV.JWT.REFRESH)
+     }
+
 }

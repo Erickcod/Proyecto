@@ -5,7 +5,7 @@ import "./Auth.scss";
 import { LoginForm ,RegisterFrom } from "../../../comoponents/Admin/Auth";
 
 export function Auth() {
-  const [activeIndex, setActiveIndex] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(0);
   const openLogin = () => setActiveIndex(0);
   const panes = [
     {
