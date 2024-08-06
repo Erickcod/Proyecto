@@ -2,7 +2,7 @@ import * as Yup from "yup"
 
 export function initialValues(){
     return{
-        Avatar:"",
+        avatar:"",
         fileAvatar: null,
         fristname:"",
         lastname:"",
